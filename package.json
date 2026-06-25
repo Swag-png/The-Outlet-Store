@@ -1,0 +1,11 @@
+{
+  "name": "the-outlet-store",
+  "version": "1.0.0",
+  "description": "The Outlet Store catalogue website",
+  "scripts": {
+    "scrape": "node scraper.js",
+    "start": "npx serve . -p 3000"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
