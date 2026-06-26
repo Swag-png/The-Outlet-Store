@@ -210,6 +210,11 @@ footer p{font-size:12px;color:var(--muted);line-height:2.2}
 <script src="products.js"></script>
 <script>
 const WA = '27676853057';
+
+// Proxy Yupoo images through weserv.nl to bypass hotlink protection
+function px(url) {
+  return 'https://images.weserv.nl/?url=' + encodeURIComponent(url) + '&w=600&output=webp';
+}
 const CHIPS_LIST = ['All','Jordan','Nike','Balenciaga','New Balance','Margiela',
   'Rick Owens','Adidas','Yeezy','Asics','Puma','Converse','Vans','Salomon','Hoka',
   'Saucony','On Running','Onitsuka Tiger','Golden Goose','Bape','Amiri','Valentino',
@@ -270,7 +275,7 @@ function makeCard(p) {
   let slidesHtml = '';
   if (hasImgs) {
     slidesHtml = p.imgs.map(src =>
-      `<div class="slide"><img src="${src}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`
+      `<div class="slide"><img src="${px(src)}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`
     ).join('');
   } else {
     slidesHtml = `<div class="slide"><div class="ph" style="color:${p.color}">${ab}</div></div>`;
@@ -335,7 +340,7 @@ function updateModal() {
   const ab = abbr(p.brand);
 
   if (hasImgs) {
-    img.src = p.imgs[modalIdx];
+    img.src = px(p.imgs[modalIdx]);
     img.style.display = '';
     document.getElementById('modal-counter').textContent =
       p.imgs.length > 1 ? `${modalIdx+1} / ${p.imgs.length}` : '';
