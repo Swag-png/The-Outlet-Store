@@ -5,200 +5,295 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Outlet Store</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
-:root {
-  --bg:#0a0a0a; --surf:#111; --card:#161616; --border:#222;
-  --gold:#c8a84b; --gold2:#7a6428; --text:#eee8df; --muted:#666;
-  --wa:#25d366; --radius:12px;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+:root{
+  --bg:#0a0a0a;--surf:#111;--card:#161616;--bdr:#222;
+  --gold:#c8a84b;--text:#eee8df;--muted:#555;--wa:#25d366;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:58px;display:flex;align-items:center;gap:16px}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--text);white-space:nowrap}
-.nav-logo span{color:var(--gold)}
-.nav-search{flex:1;max-width:380px;position:relative}
-.nav-search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
-#search{width:100%;background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:8px 12px 8px 36px;color:var(--text);font:400 13px 'DM Sans',sans-serif;outline:none;transition:border-color .15s}
+nav{position:sticky;top:0;z-index:200;background:rgba(10,10,10,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--bdr);padding:0 20px;height:56px;display:flex;align-items:center;gap:14px}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text);white-space:nowrap}
+.logo em{color:var(--gold);font-style:normal}
+.search-wrap{flex:1;max-width:360px;position:relative}
+.search-wrap svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+#search{width:100%;background:var(--surf);border:1px solid var(--bdr);border-radius:8px;
+  padding:8px 12px 8px 34px;color:var(--text);font:400 13px 'DM Sans',sans-serif;outline:none;
+  transition:border-color .15s}
 #search:focus{border-color:var(--gold)}
 #search::placeholder{color:var(--muted)}
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
-.nav-count{font-size:11px;color:var(--muted);white-space:nowrap}
-.nav-count strong{color:var(--gold)}
-.wa-btn{display:flex;align-items:center;gap:6px;background:var(--wa);color:#fff;padding:8px 14px;border-radius:8px;font:600 12px 'DM Sans',sans-serif;text-decoration:none;letter-spacing:.03em;transition:opacity .15s;white-space:nowrap}
-.wa-btn:hover{opacity:.88}
-.wa-btn svg{flex-shrink:0}
+.count{font-size:11px;color:var(--muted)}
+.count strong{color:var(--gold)}
+.wa-nav{display:flex;align-items:center;gap:6px;background:var(--wa);color:#fff;
+  padding:7px 14px;border-radius:8px;font:600 12px 'DM Sans',sans-serif;text-decoration:none;
+  white-space:nowrap;transition:opacity .15s}
+.wa-nav:hover{opacity:.88}
 
 /* HERO */
-.hero{padding:48px 24px 32px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'THE OUTLET';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(60px,12vw,140px);color:rgba(200,168,75,.04);letter-spacing:-.04em;white-space:nowrap;pointer-events:none}
-.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,5vw,48px);letter-spacing:.02em;line-height:1.1;margin-bottom:12px}
-.hero h1 span{color:var(--gold)}
-.hero p{font-size:14px;color:var(--muted);max-width:420px;margin:0 auto 24px;line-height:1.7}
-.hero-wa{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:#fff;padding:14px 28px;border-radius:10px;font:600 14px 'DM Sans',sans-serif;text-decoration:none;letter-spacing:.04em;transition:opacity .15s}
+.hero{padding:52px 20px 36px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'OUTLET';position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(70px,14vw,160px);color:rgba(200,168,75,.03);letter-spacing:-.04em;
+  pointer-events:none;z-index:0}
+.hero>*{position:relative;z-index:1}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(26px,5vw,46px);line-height:1.1;margin-bottom:10px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{font-size:13px;color:var(--muted);max-width:380px;margin:0 auto 22px;line-height:1.7}
+.hero-wa{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:#fff;
+  padding:13px 26px;border-radius:10px;font:600 13px 'DM Sans',sans-serif;
+  text-decoration:none;letter-spacing:.04em;transition:opacity .15s}
 .hero-wa:hover{opacity:.88}
 
-/* FILTERS */
-.filters{padding:0 24px 0;position:sticky;top:58px;z-index:90;background:var(--bg);border-bottom:1px solid var(--border)}
-.filter-scroll{display:flex;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
-.filter-scroll::-webkit-scrollbar{display:none}
-.chip{flex-shrink:0;background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font:400 12px 'DM Sans',sans-serif;color:var(--muted);cursor:pointer;transition:all .12s;white-space:nowrap}
+/* CHIPS */
+.chips-wrap{position:sticky;top:56px;z-index:100;background:var(--bg);
+  border-bottom:1px solid var(--bdr)}
+.chips{display:flex;gap:7px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;background:var(--surf);border:1px solid var(--bdr);border-radius:20px;
+  padding:5px 14px;font:400 12px 'DM Sans',sans-serif;color:var(--muted);cursor:pointer;
+  transition:all .12s;white-space:nowrap}
 .chip:hover{color:var(--text);border-color:#444}
-.chip.active{background:rgba(200,168,75,.1);border-color:var(--gold);color:var(--gold)}
+.chip.on{background:rgba(200,168,75,.1);border-color:var(--gold);color:var(--gold)}
 
 /* GRID */
-.grid-wrap{padding:24px}
-#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.grid-outer{padding:20px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
 
 /* CARD */
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.5);border-color:var(--gold2)}
-/* IMAGE CAROUSEL */
-.card-imgs{position:relative;height:200px;overflow:hidden;background:#0f0f0f;cursor:pointer}
-.card-imgs-inner{display:flex;height:100%;transition:transform .3s ease}
-.card-img-slide{flex-shrink:0;width:100%;height:100%;object-fit:cover;background:#0f0f0f}
-.card-img-placeholder{flex-shrink:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:40px;opacity:.15}
-.card-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
-.dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .2s}
-.dot.active{background:var(--gold)}
-.card-nav{position:absolute;top:50%;transform:translateY(-50%);width:28px;height:28px;background:rgba(0,0,0,.5);border:none;border-radius:50%;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
-.card:hover .card-nav{opacity:1}
-.card-nav-prev{left:8px}
-.card-nav-next{right:8px}
-/* BODY */
-.card-body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column}
-.card-brand{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:600}
-.card-name{font-size:13px;line-height:1.4;color:var(--text);flex:1;margin-bottom:14px}
-.card-footer{border-top:1px solid var(--border);padding-top:12px;display:flex;align-items:center;justify-content:flex-end}
-.card-wa{display:flex;align-items:center;gap:6px;background:var(--wa);color:#fff;padding:8px 14px;border-radius:7px;font:600 12px 'DM Sans',sans-serif;text-decoration:none;letter-spacing:.03em;transition:opacity .15s;width:100%;justify-content:center}
-.card-wa:hover{opacity:.85}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s;
+  cursor:pointer}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(0,0,0,.5);
+  border-color:rgba(200,168,75,.35)}
+
+/* IMAGE */
+.img-wrap{position:relative;height:200px;background:#0e0e0e;overflow:hidden;user-select:none}
+.slides{display:flex;height:100%;transition:transform .28s ease}
+.slide{flex-shrink:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide .ph{font-family:'Syne',sans-serif;font-weight:800;font-size:44px;opacity:.12;
+  letter-spacing:-.02em;text-align:center;padding:8px;line-height:1}
+.arr{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;
+  background:rgba(0,0,0,.55);border:none;border-radius:50%;color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  opacity:0;transition:opacity .15s;z-index:2}
+.card:hover .arr{opacity:1}
+.arr-l{left:7px}
+.arr-r{right:7px}
+.dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  display:flex;gap:4px;z-index:2}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.28);transition:background .2s}
+.dot.on{background:var(--gold)}
+
+/* CARD BODY */
+.cbody{padding:13px 15px 15px;flex:1;display:flex;flex-direction:column}
+.cbrand{font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:4px;font-weight:600}
+.cname{font-size:13px;line-height:1.4;flex:1;margin-bottom:12px}
+.cfoot{border-top:1px solid var(--bdr);padding-top:11px}
+.wa-card{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--wa);
+  color:#fff;padding:9px;border-radius:8px;font:600 12px 'DM Sans',sans-serif;
+  text-decoration:none;letter-spacing:.03em;transition:opacity .15s}
+.wa-card:hover{opacity:.85}
 
 /* EMPTY */
-.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted)}
-.empty .icon{font-size:40px;margin-bottom:12px}
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted);font-size:14px}
+
+/* MODAL LIGHTBOX */
+#modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);
+  align-items:center;justify-content:center}
+#modal.open{display:flex}
+.modal-inner{position:relative;max-width:92vw;max-height:92vh;
+  display:flex;flex-direction:column;align-items:center}
+.modal-img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:8px;
+  box-shadow:0 20px 80px rgba(0,0,0,.8)}
+.modal-info{margin-top:14px;text-align:center}
+.modal-brand{font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:4px}
+.modal-name{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:14px}
+.modal-wa{display:inline-flex;align-items:center;gap:7px;background:var(--wa);color:#fff;
+  padding:10px 22px;border-radius:8px;font:600 13px 'DM Sans',sans-serif;
+  text-decoration:none;letter-spacing:.04em;transition:opacity .15s}
+.modal-wa:hover{opacity:.88}
+.modal-close{position:absolute;top:-14px;right:-14px;width:36px;height:36px;
+  background:var(--surf);border:1px solid var(--bdr);border-radius:50%;color:#aaa;
+  cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;
+  line-height:1;transition:color .15s}
+.modal-close:hover{color:var(--text)}
+.modal-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;
+  background:rgba(0,0,0,.6);border:none;border-radius:50%;color:#fff;cursor:pointer;
+  font-size:20px;display:flex;align-items:center;justify-content:center}
+.modal-nav-l{left:-50px}
+.modal-nav-r{right:-50px}
+.modal-counter{font-size:11px;color:var(--muted);margin-top:8px}
 
 /* FOOTER */
-footer{margin-top:60px;border-top:1px solid var(--border);padding:32px 24px;text-align:center}
-footer p{font-size:12px;color:var(--muted);line-height:2}
-.footer-wa{display:inline-flex;align-items:center;gap:6px;color:var(--wa);text-decoration:none;font-weight:600}
+footer{margin-top:60px;border-top:1px solid var(--bdr);padding:28px 20px;text-align:center}
+footer p{font-size:12px;color:var(--muted);line-height:2.2}
+.foot-wa{color:var(--wa);text-decoration:none;font-weight:600}
 
-@media(max-width:640px){
-  #grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
-  .card-imgs{height:170px}
-  nav{padding:0 16px}
-  .grid-wrap,.filters{padding-left:16px;padding-right:16px}
+@media(max-width:600px){
+  #grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .img-wrap{height:170px}
+  .modal-nav-l{left:-8px}
+  .modal-nav-r{right:-8px}
+  nav{padding:0 14px}
+  .grid-outer,.chips-wrap{padding-left:14px;padding-right:14px}
+  .chips{padding-left:14px;padding-right:14px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">The <span>Outlet</span></div>
-  <div class="nav-search">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <div class="logo">The <em>Outlet</em></div>
+  <div class="search-wrap">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="text" id="search" placeholder="Search Nike, Jordan, Chanel…" oninput="render()">
   </div>
   <div class="nav-right">
-    <div class="nav-count"><strong id="count">—</strong> items</div>
-    <a class="wa-btn" href="https://wa.me/27676853057?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20product%20from%20The%20Outlet%20Store" target="_blank">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <div class="count"><strong id="cnt">—</strong> items</div>
+    <a class="wa-nav" href="https://wa.me/27676853057?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20a%20product" target="_blank" rel="noopener">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       WhatsApp
     </a>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <h1>Premium <span>Kicks & Bags</span><br>Delivered to You</h1>
-  <p>Top-quality footwear and designer bags. DM to order — we ship straight to your door.</p>
-  <a class="hero-wa" href="https://wa.me/27676853057?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20from%20The%20Outlet%20Store" target="_blank">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <h1>Premium Kicks<br>&amp; <em>Designer Bags</em></h1>
+  <p>Top-quality footwear and bags shipped straight to you. DM to order.</p>
+  <a class="hero-wa" href="https://wa.me/27676853057?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20from%20The%20Outlet%20Store" target="_blank" rel="noopener">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Order via WhatsApp
   </a>
 </div>
 
-<!-- FILTER CHIPS -->
-<div class="filters">
-  <div class="filter-scroll" id="chips"></div>
+<div class="chips-wrap">
+  <div class="chips" id="chips"></div>
 </div>
 
-<!-- GRID -->
-<div class="grid-wrap">
+<div class="grid-outer">
   <div id="grid"></div>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <p>The Outlet Store · Premium footwear & designer bags</p>
-  <p>
-    <a class="footer-wa" href="https://wa.me/27676853057" target="_blank">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      +27 67 685 3057
-    </a>
-  </p>
+  <p>The Outlet Store · Premium footwear &amp; designer bags</p>
+  <p><a class="foot-wa" href="https://wa.me/27676853057" target="_blank">+27 67 685 3057</a></p>
 </footer>
+
+<!-- LIGHTBOX MODAL -->
+<div id="modal" role="dialog" aria-modal="true" aria-label="Product viewer">
+  <div class="modal-inner" id="modal-inner">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+    <button class="modal-nav modal-nav-l" id="mnl" onclick="modalSlide(-1)">‹</button>
+    <img class="modal-img" id="modal-img" src="" alt="">
+    <button class="modal-nav modal-nav-r" id="mnr" onclick="modalSlide(1)">›</button>
+    <div class="modal-info">
+      <div class="modal-brand" id="modal-brand"></div>
+      <div class="modal-name" id="modal-name"></div>
+      <a class="modal-wa" id="modal-wa" href="#" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enquire via WhatsApp
+      </a>
+      <div class="modal-counter" id="modal-counter"></div>
+    </div>
+  </div>
+</div>
 
 <script src="products.js"></script>
 <script>
 const WA = '27676853057';
-let activeChip = 'All';
-const CHIPS = ['All','Jordan','Nike','Balenciaga','New Balance','Margiela','Rick Owens','Adidas / Yeezy','Asics','Puma','Converse','Vans','Salomon','Hoka','Saucony','On Running','Onitsuka Tiger','Golden Goose','Bape','Amiri','Valentino','Dior','Gucci','Prada','Loewe','Burberry','Timberland','Birkenstock','UGG','Crocs','Bags'];
+const CHIPS_LIST = ['All','Jordan','Nike','Balenciaga','New Balance','Margiela',
+  'Rick Owens','Adidas','Yeezy','Asics','Puma','Converse','Vans','Salomon','Hoka',
+  'Saucony','On Running','Onitsuka Tiger','Golden Goose','Bape','Amiri','Valentino',
+  'Dior','Gucci','Prada','Loewe','Timberland','Birkenstock','UGG','Crocs','Bags'];
 
-// build chips
-const chipWrap = document.getElementById('chips');
-CHIPS.forEach(c => {
-  const el = document.createElement('button');
-  el.className = 'chip' + (c==='All'?' active':'');
-  el.textContent = c;
-  el.onclick = () => { activeChip=c; document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); el.classList.add('active'); render(); };
-  chipWrap.appendChild(el);
+let active = 'All';
+let modalProd = null, modalIdx = 0;
+
+// Build chips
+const chipsEl = document.getElementById('chips');
+CHIPS_LIST.forEach(c => {
+  const b = document.createElement('button');
+  b.className = 'chip' + (c==='All'?' on':'');
+  b.textContent = c;
+  b.onclick = () => {
+    active = c;
+    document.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    render();
+  };
+  chipsEl.appendChild(b);
 });
 
-function waMsg(name) {
-  return `https://wa.me/${WA}?text=${encodeURIComponent('Hi! I\'d like to enquire about:\n\n*' + name + '*\n\nPlease let me know availability.')}`;
+function waLink(name) {
+  return `https://wa.me/${WA}?text=${encodeURIComponent('Hi! I\'d like to enquire about:\n\n*' + name + '*\n\nPlease let me know availability and pricing.')}`;
 }
 
-function matchChip(p, chip) {
-  if (chip === 'All') return true;
-  if (chip === 'Bags') return p.cat.toLowerCase().includes('bag') || p.tags.includes('bag');
-  if (chip === 'Jordan') return p.brand === 'Nike' && (p.cat.toLowerCase().includes('jordan') || p.cat.toLowerCase().includes('kobe') || p.cat.toLowerCase().includes('blazer') || p.cat.toLowerCase().includes('jumpman') || p.cat.toLowerCase().includes('nocta'));
-  if (chip === 'Nike') return p.brand === 'Nike' && !matchChip(p,'Jordan');
-  if (chip === 'Adidas / Yeezy') return p.brand === 'Adidas' || p.cat === 'Yeezy';
-  if (chip === 'On Running') return p.brand === 'On Running';
-  if (chip === 'Onitsuka Tiger') return p.brand === 'Onitsuka Tiger';
-  if (chip === 'Golden Goose') return p.brand === 'Golden Goose';
-  if (chip === 'Rick Owens') return p.brand === 'Rick Owens';
-  return p.brand.toLowerCase().includes(chip.toLowerCase()) || p.cat.toLowerCase().includes(chip.toLowerCase());
-}
-
-function buildCard(p) {
-  const abbr = p.brand.split(' ').map(w=>w[0]).join('').slice(0,3).toUpperCase();
-  const hasImgs = p.imgs && p.imgs.length > 0;
-  let imgHtml = '';
-  let dotsHtml = '';
-  let navHtml = '';
-  if (hasImgs) {
-    imgHtml = p.imgs.map(src => `<img class="card-img-slide" src="${src}" loading="lazy" alt="${p.name}" onerror="this.style.display='none'">`).join('');
-    if (p.imgs.length > 1) {
-      dotsHtml = `<div class="card-dots">${p.imgs.map((_,i)=>`<div class="dot${i===0?' active':''}"></div>`).join('')}</div>`;
-      navHtml = `<button class="card-nav card-nav-prev" onclick="slide(event,'${p.id}',-1)">‹</button><button class="card-nav card-nav-next" onclick="slide(event,'${p.id}',1)">›</button>`;
-    }
-  } else {
-    imgHtml = `<div class="card-img-placeholder" style="color:${p.color}">${abbr}</div>`;
+function match(p) {
+  const c = active;
+  if (c === 'All') return true;
+  if (c === 'Bags') return p.cat === 'Bags';
+  if (c === 'Jordan') {
+    const nc = p.cat.toLowerCase();
+    return p.brand === 'Nike' && (nc.includes('jordan') || nc.includes('kobe') ||
+      nc.includes('jumpman') || nc.includes('nocta') || nc.includes('blazer'));
   }
-  return `<div class="card" id="card-${p.id}">
-    <div class="card-imgs" data-id="${p.id}" data-idx="0" onclick="openLink('${p.url}')">
-      <div class="card-imgs-inner" id="imgs-${p.id}">${imgHtml}</div>
-      ${dotsHtml}${navHtml}
+  if (c === 'Nike') {
+    return p.brand === 'Nike' && !match({...p, cat:p.cat}) || (p.brand==='Nike' && !['Jordan','Kobe','NOCTA','Jumpman','Blazer'].some(x=>p.cat.includes(x)));
+  }
+  if (c === 'Adidas') return p.brand === 'Adidas' && p.cat !== 'Yeezy';
+  if (c === 'Yeezy') return p.cat === 'Yeezy';
+  if (c === 'On Running') return p.brand === 'On Running';
+  if (c === 'Onitsuka Tiger') return p.brand === 'Onitsuka Tiger';
+  if (c === 'Golden Goose') return p.brand === 'Golden Goose';
+  if (c === 'Rick Owens') return p.brand === 'Rick Owens';
+  return p.brand.toLowerCase().includes(c.toLowerCase()) ||
+         p.cat.toLowerCase().includes(c.toLowerCase());
+}
+
+function abbr(brand) {
+  return brand.split(' ').map(w=>w[0]).join('').slice(0,3).toUpperCase();
+}
+
+function makeCard(p) {
+  const hasImgs = p.imgs && p.imgs.length > 0;
+  const ab = abbr(p.brand);
+
+  let slidesHtml = '';
+  if (hasImgs) {
+    slidesHtml = p.imgs.map(src =>
+      `<div class="slide"><img src="${src}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`
+    ).join('');
+  } else {
+    slidesHtml = `<div class="slide"><div class="ph" style="color:${p.color}">${ab}</div></div>`;
+  }
+
+  const dotsHtml = hasImgs && p.imgs.length > 1
+    ? `<div class="dots">${p.imgs.map((_,i)=>`<div class="dot${i===0?' on':''}"></div>`).join('')}</div>` : '';
+
+  const arrowsHtml = hasImgs && p.imgs.length > 1
+    ? `<button class="arr arr-l" onclick="cardSlide(event,'${p.id}',-1)">‹</button>
+       <button class="arr arr-r" onclick="cardSlide(event,'${p.id}',1)">›</button>` : '';
+
+  return `<div class="card" id="c-${p.id}">
+    <div class="img-wrap" data-id="${p.id}" data-i="0" onclick="openModal('${p.id}')">
+      <div class="slides" id="sl-${p.id}">${slidesHtml}</div>
+      ${dotsHtml}${arrowsHtml}
     </div>
-    <div class="card-body">
-      <div class="card-brand">${p.brand}</div>
-      <div class="card-name">${p.name}</div>
-      <div class="card-footer">
-        <a class="card-wa" href="${waMsg(p.name)}" target="_blank" rel="noopener">
+    <div class="cbody">
+      <div class="cbrand">${p.brand}</div>
+      <div class="cname">${p.name}</div>
+      <div class="cfoot">
+        <a class="wa-card" href="${waLink(p.name)}" target="_blank" rel="noopener"
+           onclick="event.stopPropagation()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Enquire
         </a>
@@ -207,37 +302,99 @@ function buildCard(p) {
   </div>`;
 }
 
-function slide(e, id, dir) {
+// Card carousel
+function cardSlide(e, id, dir) {
   e.stopPropagation();
-  const wrap = document.getElementById('imgs-'+id);
+  const wrap = document.getElementById('c-'+id)?.querySelector('.img-wrap');
   if (!wrap) return;
-  const slides = wrap.querySelectorAll('.card-img-slide');
-  if (!slides.length) return;
-  const container = wrap.parentElement;
-  let idx = parseInt(container.dataset.idx || 0);
-  idx = (idx + dir + slides.length) % slides.length;
-  container.dataset.idx = idx;
-  wrap.style.transform = `translateX(-${idx*100}%)`;
-  const dots = container.querySelectorAll('.dot');
-  dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+  const slides = wrap.querySelector('.slides');
+  const count = slides.children.length;
+  if (count <= 1) return;
+  let i = parseInt(wrap.dataset.i || 0);
+  i = (i + dir + count) % count;
+  wrap.dataset.i = i;
+  slides.style.transform = `translateX(-${i*100}%)`;
+  wrap.querySelectorAll('.dot').forEach((d,idx) => d.classList.toggle('on', idx===i));
 }
 
-function openLink(url) { window.open(url,'_blank','noopener'); }
+// Modal
+function openModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  modalProd = p;
+  modalIdx = 0;
+  updateModal();
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateModal() {
+  const p = modalProd;
+  const hasImgs = p.imgs && p.imgs.length > 0;
+  const img = document.getElementById('modal-img');
+  const ab = abbr(p.brand);
+
+  if (hasImgs) {
+    img.src = p.imgs[modalIdx];
+    img.style.display = '';
+    document.getElementById('modal-counter').textContent =
+      p.imgs.length > 1 ? `${modalIdx+1} / ${p.imgs.length}` : '';
+    document.getElementById('mnl').style.display = p.imgs.length > 1 ? '' : 'none';
+    document.getElementById('mnr').style.display = p.imgs.length > 1 ? '' : 'none';
+  } else {
+    img.style.display = 'none';
+    document.getElementById('modal-counter').textContent = '';
+    document.getElementById('mnl').style.display = 'none';
+    document.getElementById('mnr').style.display = 'none';
+  }
+
+  document.getElementById('modal-brand').textContent = p.brand;
+  document.getElementById('modal-name').textContent = p.name;
+  document.getElementById('modal-wa').href = waLink(p.name);
+}
+
+function modalSlide(dir) {
+  if (!modalProd || !modalProd.imgs.length) return;
+  modalIdx = (modalIdx + dir + modalProd.imgs.length) % modalProd.imgs.length;
+  updateModal();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  modalProd = null;
+}
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('modal').classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') modalSlide(-1);
+  if (e.key === 'ArrowRight') modalSlide(1);
+});
+
+// Click outside modal to close
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal')) closeModal();
+});
 
 function render() {
   const q = document.getElementById('search').value.toLowerCase().trim();
   const items = PRODUCTS.filter(p => {
-    const chipMatch = matchChip(p, activeChip);
-    const qMatch = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.tags.some(t=>t.includes(q));
-    return chipMatch && qMatch;
+    const cm = match(p);
+    const qm = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) ||
+      (p.tags||[]).some(t => t.includes(q));
+    return cm && qm;
   });
-  document.getElementById('count').textContent = items.length;
+
+  document.getElementById('cnt').textContent = items.length;
   const grid = document.getElementById('grid');
+
   if (!items.length) {
-    grid.innerHTML = `<div class="empty"><div class="icon">🔍</div><p>No items found. Try a different search.</p></div>`;
+    grid.innerHTML = `<div class="empty">No items found.<br>Try a different search or category.</div>`;
     return;
   }
-  grid.innerHTML = items.map(buildCard).join('');
+  grid.innerHTML = items.map(makeCard).join('');
 }
 
 render();
