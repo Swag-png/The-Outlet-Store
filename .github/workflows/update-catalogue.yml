@@ -2,13 +2,12 @@ name: Update Catalogue
 
 on:
   schedule:
-    # Runs every Monday at 08:00 SAST (06:00 UTC)
+    # Every Monday 06:00 UTC (08:00 SAST)
     - cron: '0 6 * * 1'
-  # Also allows manual trigger from GitHub Actions tab
   workflow_dispatch:
 
 jobs:
-  scrape-and-update:
+  update:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,27 +16,24 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run scraper
+      - name: Run scraper (products + images)
         run: node scraper.js
 
       - name: Check for changes
-        id: changes
+        id: diff
         run: |
           git diff --quiet products.js || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push if changed
-        if: steps.changes.outputs.changed == 'true'
+        if: steps.diff.outputs.changed == 'true'
         run: |
           git config --global user.name  "Outlet Store Bot"
-          git config --global user.email "bot@theoutletstore.co.za"
+          git config --global user.email "bot@outlet.co.za"
           git add products.js
-          git commit -m "Auto-update: new products from WWTOP $(date +'%Y-%m-%d')"
+          git commit -m "Auto-update: new products + images $(date +'%Y-%m-%d')"
           git push
